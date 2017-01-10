@@ -1,4 +1,4 @@
-package pembroke.studio.lib
+package pembroke.studio.template
 
 enum class ApiEndpoint(val url: String) {
     Production(""),

@@ -8,8 +8,8 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import pembroke.studio.lib.ApiEndpoint
-import pembroke.studio.lib.AppUriHandler
+import pembroke.studio.template.ApiEndpoint
+import pembroke.studio.template.AppUriHandler
 import pembroke.studio.lib.dagger.Qualifiers
 import pembroke.studio.lib.interceptor.ApiRequestInterceptor
 import pembroke.studio.lib.model.RealmManager
@@ -22,6 +22,7 @@ import pembroke.studio.template.model.realm.manager.UserManager
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -82,8 +83,8 @@ open class AppModule(private val application: Application) {
     fun provideFragmentManagerProvider() : FragmentManagerProviderType = FragmentManagerProvider()
 
     @Provides @Singleton
-    fun provideRealmManager() = RealmManager()
+    fun provideUserManager(realmManager: RealmManager): UserManagerType = UserManager(realmManager, User::class.java)
 
     @Provides @Singleton
-    fun provideUserManager(realmManager: RealmManager): UserManagerType = UserManager(realmManager, User::class.java)
+    fun provideRealmManager() = RealmManager()
 }

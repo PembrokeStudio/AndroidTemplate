@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 
 @Module(includes = arrayOf(AppModule::class))
-class ProductionAppModule(application: Application) : AppModule(application) {
+class ProductionAppModule {
     @Provides @Singleton
     fun provideApiEndpoint() =
             ApiEndpoint.Production

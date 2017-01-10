@@ -4,18 +4,13 @@ import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import net.danlew.android.joda.JodaTimeAndroid
-import pembroke.studio.lib.model.RealmManager
 import pembroke.studio.template.dagger.AppComponent
 import pembroke.studio.template.dagger.AppModule
 import pembroke.studio.template.dagger.DaggerAppComponent
-import javax.inject.Inject
 
 class App : Application() {
 
     lateinit var component: AppComponent
-
-    @Inject
-    lateinit var realmManager: RealmManager
 
     override fun onCreate() {
         super.onCreate()
@@ -34,10 +29,5 @@ class App : Application() {
         Realm.setDefaultConfiguration(config)
 
         JodaTimeAndroid.init(this)
-    }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        realmManager.close()
     }
 }
