@@ -6,6 +6,10 @@ import android.util.SparseArray
 import java.io.Serializable
 import java.util.*
 
+/**
+ * Builder class for building Android Bundles.
+ * Let's the client chain 'put' calls, i.e. BundleBuilder().putX().putY().build()
+ */
 class BundleBuilder(private val bundle: Bundle = Bundle()) {
 
     fun putAll(bundle: Bundle): BundleBuilder {
@@ -161,5 +165,4 @@ class BundleBuilder(private val bundle: Bundle = Bundle()) {
     fun build(): Bundle {
         return bundle
     }
-
 }

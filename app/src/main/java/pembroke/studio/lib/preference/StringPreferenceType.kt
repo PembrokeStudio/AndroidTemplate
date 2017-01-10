@@ -1,5 +1,8 @@
 package pembroke.studio.lib.preference
 
+/**
+ * Represents a single, persistent String preference value.
+ */
 interface StringPreferenceType {
     /**
      * Get the current value of the preference.

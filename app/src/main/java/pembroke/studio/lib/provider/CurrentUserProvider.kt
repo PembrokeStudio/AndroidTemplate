@@ -5,6 +5,10 @@ import io.reactivex.subjects.BehaviorSubject
 import org.jetbrains.anko.AnkoLogger
 import pembroke.studio.lib.preference.StringPreferenceType
 
+/**
+ * An implementation of the CurrentUserProviderType that uses StringPreferenceTypes to store and
+ * retrieve values.
+ */
 class CurrentUserProvider(private val tokenPreference: StringPreferenceType,
                           private val userPreference: StringPreferenceType,
                           private val gson: Gson)

@@ -4,6 +4,9 @@ import android.content.SharedPreferences
 import pembroke.studio.lib.preference.StringPreferenceType
 
 
+/**
+ * An implementation of the StringPreferenceType interface using Android's SharedPreferences.
+ */
 class StringPreference constructor(private val sharedPreferences: SharedPreferences,
                                    private val key: String,
                                    private val defaultValue: String? = null)
