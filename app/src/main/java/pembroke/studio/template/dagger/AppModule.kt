@@ -8,21 +8,17 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
-import pembroke.studio.template.ApiEndpoint
-import pembroke.studio.template.AppUriHandler
 import pembroke.studio.lib.dagger.Qualifiers
 import pembroke.studio.lib.interceptor.ApiRequestInterceptor
-import pembroke.studio.lib.model.RealmManager
 import pembroke.studio.lib.preference.StringPreference
 import pembroke.studio.lib.preference.StringPreferenceType
-import pembroke.studio.lib.provider.*
-import pembroke.studio.template.model.type.manager.UserManagerType
-import pembroke.studio.template.model.realm.User
-import pembroke.studio.template.model.realm.manager.UserManager
+import pembroke.studio.lib.provider.CurrentUserProvider
+import pembroke.studio.lib.provider.CurrentUserProviderType
+import pembroke.studio.template.ApiEndpoint
+import pembroke.studio.template.AppUriHandler
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -75,16 +71,4 @@ open class AppModule(private val application: Application) {
     @Provides @Singleton
     fun provideApiRequestInterceptor(currentUserProvider: CurrentUserProviderType, appUriHandler: AppUriHandler) =
         ApiRequestInterceptor(currentUserProvider, appUriHandler)
-
-    @Provides @Singleton
-    fun provideActionBarProvider() : ActionBarProviderType = ActionBarProvider()
-
-    @Provides @Singleton
-    fun provideFragmentManagerProvider() : FragmentManagerProviderType = FragmentManagerProvider()
-
-    @Provides @Singleton
-    fun provideUserManager(realmManager: RealmManager): UserManagerType = UserManager(realmManager, User::class.java)
-
-    @Provides @Singleton
-    fun provideRealmManager() = RealmManager()
 }

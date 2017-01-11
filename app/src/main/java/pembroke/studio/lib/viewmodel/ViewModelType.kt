@@ -20,25 +20,8 @@
     SOFTWARE.
  */
 
-package pembroke.studio.lib.provider
+package pembroke.studio.lib.viewmodel
 
-import io.reactivex.Observable
-import pembroke.studio.template.model.UserType
+interface ViewModelType {
 
-
-/**
- * Provides an interface for interacting with the current User.
- */
-interface CurrentUserProviderType {
-    /** Stores the logged in User w/ the provided token. **/
-    fun login(user: UserType, token: String)
-
-    /** Removes the currently logged in User if there is one. **/
-    fun logout()
-
-    /** Readonly accesss to the current token String **/
-    val token: String?
-
-    /** Readonly acccess to the current User object. **/
-    val user: Observable<UserType?>
 }

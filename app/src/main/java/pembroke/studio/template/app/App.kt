@@ -6,7 +6,7 @@ import io.realm.RealmConfiguration
 import net.danlew.android.joda.JodaTimeAndroid
 import pembroke.studio.template.dagger.AppComponent
 import pembroke.studio.template.dagger.AppModule
-import pembroke.studio.template.dagger.DaggerAppComponent
+//import pembroke.studio.template.dagger.DaggerAppComponent
 
 class App : Application() {
 
@@ -20,9 +20,9 @@ class App : Application() {
                 .deleteRealmIfMigrationNeeded()
                 .build()
 
-        component = DaggerAppComponent.builder()
-                .appModule(AppModule(this))
-                .build()
+//        component = DaggerAppComponent.builder()
+//                .appModule(AppModule(this))
+//                .build()
 
         component.inject(this)
 

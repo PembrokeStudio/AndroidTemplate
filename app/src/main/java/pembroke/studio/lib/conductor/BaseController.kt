@@ -19,26 +19,36 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
  */
+package pembroke.studio.lib.conductor
 
-package pembroke.studio.lib.provider
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.bluelinelabs.conductor.rxlifecycle2.RxController
+import pembroke.studio.template.app.MainActivity
+import pembroke.studio.template.dagger.AppComponent
 
-import io.reactivex.Observable
-import pembroke.studio.template.model.UserType
 
+abstract class BaseController(args: Bundle? = null) : RxController(args) {
+    private var injected = false
 
-/**
- * Provides an interface for interacting with the current User.
- */
-interface CurrentUserProviderType {
-    /** Stores the logged in User w/ the provided token. **/
-    fun login(user: UserType, token: String)
+    override final fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
+        inject(context = inflater.context)
 
-    /** Removes the currently logged in User if there is one. **/
-    fun logout()
+        return createView(inflater, container)
+    }
 
-    /** Readonly accesss to the current token String **/
-    val token: String?
+    private fun inject(context: Context) {
+        if (!injected) {
+            injected = true
 
-    /** Readonly acccess to the current User object. **/
-    val user: Observable<UserType?>
+            val activity = context as? MainActivity ?: return
+            onInject(activity.component)
+        }
+    }
+
+    protected abstract fun createView(inflater: LayoutInflater, container: ViewGroup): View
+    protected abstract fun onInject(component: AppComponent)
 }
